@@ -28,41 +28,44 @@ class InMemoryRestaurantRepository extends ServiceEntityRepository
     {
         $r1 = new Restaurant(1);
         $r1
-            ->setName('Bio Burger')
+            ->setId(1)
+            ->setName('Le Chat Noir')
             ->setLikes(5)
             ->setDislikes(1);
 
         $r2 = new Restaurant(2);
         $r2
-            ->setName('Wok Addict')
+            ->setId(2)
+            ->setName('Boui Boui Lao')
             ->setLikes(25)
             ->setDislikes(2);
 
         $r3 = new Restaurant(3);
         $r3
-            ->setName('231 East Street')
+            ->setId(3)
+            ->setName('Les Crulotés')
             ->setLikes(12)
             ->setDislikes(3);
 
         $addr1 = new Address();
         $addr1
-            ->setStreet('10 rue de la Victoire')
-            ->setZip('75009')
-            ->setCity('Paris')
+            ->setStreet('10 rue Maury')
+            ->setZip('31000')
+            ->setCity('Toulouse')
             ->setCountry('France');
 
         $addr2 = new Address();
         $addr2
-            ->setStreet('91 rue de la Victoire')
-            ->setZip('75009')
-            ->setCity('Paris')
+            ->setStreet('30 Rue Jean Palaprat')
+            ->setZip('31000')
+            ->setCity('Toulouse')
             ->setCountry('France');
 
         $addr3 = new Address();
         $addr3
-            ->setStreet('2 Rue De La Pepiniere')
-            ->setZip('75008')
-            ->setCity('Paris')
+            ->setStreet('13 Place Dupuy')
+            ->setZip('31000')
+            ->setCity('Toulouse')
             ->setCountry('France');
 
         $r1->setAddress($addr1);

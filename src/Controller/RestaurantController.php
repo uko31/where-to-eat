@@ -31,13 +31,15 @@ class RestaurantController extends AbstractController
 
     #[Route(
         '/{id}',
-        name: 'show',
+        name: '_show',
         methods: ['GET']
     )]
-    public function show($id, Request $request): Response
+    public function show($id, InMemoryRestaurantRepository $restaurantRepository): Response
     {
+        $restaurant = $restaurantRepository->findOneById($id);
+
         return $this->render('restaurant/show.html.twig', [
-            'controller_name' => 'RestaurantController',
+            'restaurant' => $restaurant,
         ]);
     }
 }

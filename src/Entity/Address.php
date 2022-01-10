@@ -77,4 +77,9 @@ class Address
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return sprintf( "%s %s %s", $this->street, $this->zip, $this->city);
+    }
 }

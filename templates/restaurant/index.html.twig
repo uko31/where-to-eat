@@ -1,109 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Homepage !</title>
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="./bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="./bootstrap/css/bootstrap-theme.css" />
-        <link rel="stylesheet" href="./css/theme.css" />
-        <link rel="stylesheet" href="./css/app.css" />
-    </head>
-    <body>
+{%  extends 'base.html.twig'%}
 
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li  class="active"><a href="/">Home</a></li>
-                            <li ><a href="/login">Login</a></li>
-                <li ><a href="/register">Register</a></li>
-                      </ul>
-        </nav>
-        <h3 class="text-muted">WhereToEat</h3>
-      </div>
+{% import 'macro.html.twig' as my_macro %}
 
-      <div id="body">
-                <div class="jumbotron">
-  <p class="lead">You don't know where to go for lunch, check the restaurants your co-workers like?<br /> You want to share a restaurant with your co-workers?</p>
-  <p>
-    <a class="btn btn-primary" href="/restaurant-finder/random" role="button">Find a random restaurant</a>
-    <a class="btn btn-primary" href="/restaurant-finder/notTried" role="button">Find a restaurant not tried yet</a>
-  </p>
-        <p>
-        <a class="btn btn-lg btn-success" href="/restaurant/new" role="button">Add a restaurant</a></p>
-        </p>
-</div>
-
+{% block body %}
 <div class="row marketing latest-restaurants">
   <h3>Latest restaurants</h3>
     {% for restaurant in restaurants %}
-      <div class="restaurant">
-        <div class="pull-left">
-          <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center={{restaurant.address.street}} {{restaurant.address.zip}}&zoom=14&size=250x150&markers={{restaurant.address.street}} {{restaurant.address.zip}}&key=AIzaSyCQSkhpJVncuLv5WN-iE8gPt7zFqbGtrR0" />
-        </div>
-        <div class="pull-left resto-details">
-          <h4><a href="/restaurant/{{restaurant.id}}">{{restaurant.name}}</a></h4>
-          <p>{{restaurant.address.street}} {{restaurant.address.zip}} {{restaurant.address.city}} {{restaurant.address.country}}</p>
-          <p>
-            <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-thumbs-up"></span> 8
-            </button>
-            <button type="button" class="btn btn-default">
-              <span class="glyphicon glyphicon-thumbs-down"></span> 2
-            </button>
-          </p>
-      </div>
-      <div class="clearfix"></div>
-      </div>
+      {{ my_macro.show_restaurant_bis(restaurant) }}
     {% endfor %}
-<!--
-
-                              <div class="restaurant">
-                <div class="pull-left">
-                  <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=91, Rue de la Victoire 75009&zoom=14&size=250x150&markers=91, Rue de la Victoire 75009&key=AIzaSyCQSkhpJVncuLv5WN-iE8gPt7zFqbGtrR0" />
-                </div>
-                <div class="pull-left resto-details">
-                  <h4><a href="/restaurant/2">Wok Addict</a></h4>
-                  <p>91, Rue de la Victoire 75009 Paris France</p>
-                  <p>
-                      <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> 10
-                      </button>
-                      <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> 0
-                      </button>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-                </div>
-
-                              <div class="restaurant">
-                <div class="pull-left">
-                  <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=2 Rue De La Pepiniere 75008&zoom=14&size=250x150&markers=2 Rue De La Pepiniere 75008&key=AIzaSyCQSkhpJVncuLv5WN-iE8gPt7zFqbGtrR0" />
-                </div>
-                <div class="pull-left resto-details">
-                  <h4><a href="/restaurant/3">231 East Street</a></h4>
-                  <p>2 Rue De La Pepiniere 75008 Paris France</p>
-                  <p>
-                      <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> 8
-                      </button>
-                      <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-thumbs-down"></span> 2
-                      </button>
-                  </p>
-                </div>
-                <div class="clearfix"></div>
-                </div>
--->
-        </div>
-      </div>
-      <footer class="footer">
-        <p>&copy; 2021 WhereToEat, Inc.</p>
-      </footer>
-    </div>
-    <script src="./js/jquery.min.js"></script>
-    <script src="./bootstrap/js/bootstrap.js"></script>
-</body>
-</html>
+{%  endblock %}
