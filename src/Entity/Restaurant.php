@@ -30,6 +30,9 @@ class Restaurant
         return $this->id;
     }
 
+    /*
+     * ajouté pour les besoins des données fictives
+    */
     public function setId(int $id): self
     {
         $this->id = $id;
