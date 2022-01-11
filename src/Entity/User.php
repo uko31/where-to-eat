@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -15,15 +16,26 @@ class User
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        max: 32,
+    )]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        max: 32,
+    )]
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Email()]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotCompromisedPassword()]
+    #[Assert\Length(
+        min: 3,
+    )]
     private $password;
 
     public function getId(): ?int
@@ -77,5 +89,13 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    #[Assert\IsTrue(
+        message: 'your password contient votre prénom'
+    )]
+    public function isPasswordValid(): bool
+    {
+        return strpos($this->password, $this->firstname);
     }
 }

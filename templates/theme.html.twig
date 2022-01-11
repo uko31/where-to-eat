@@ -1,0 +1,19 @@
+{# email|text|tel|... #}
+{% block email_label %}
+    {{ name }}
+    {{ form_errors(form) }}
+{% endblock %}
+
+{% block email_widget %}
+    {# Allow to display all variables available inside the block #}
+    {{ dump() }}
+    <form-email>
+        <input type="text" name="{{ full_name }}"/>
+    </form-email>
+{% endblock %}
+
+{# override a specific field based on its id _{{ id }} #}
+{% block _user_lastname_widget %}
+    {# dump() #}
+    <b>lastname override</b>
+{% endblock %}

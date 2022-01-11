@@ -20,6 +20,7 @@ class UserType extends AbstractType
             ->add('cgu', Type\CheckboxType::class, [
                 'label' => '<b>Je m\'engage à manger proprement!</b>',
                 'label_html' => true,
+                // mapped permet de sortir le champ de la classe entity associée au formulaire
                 'mapped' => false,
             ])
             ->add('register', Type\SubmitType::class)

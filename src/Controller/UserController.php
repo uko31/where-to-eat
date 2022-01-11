@@ -13,14 +13,21 @@ class UserController extends AbstractController
     #[Route('/register', name: 'user_register')]
     public function register(Request $request): Response
     {
-        $form = $this->createForm(UserType::class);
+        $form = $this->createForm(
+            UserType::class,
+            null,
+            [
+                'validation_groups' => ['CREATE', 'Default'],
+            ]
+        );
 
         $form->handleRequest($request);
-        //dump($form->get('cgu')->getData());
-
+        
+        // on a sorti le cgu du model, on l'ajoute comme condition pour la validation:
         if ($form->isSubmitted() && $form->isValid() && $form->get('cgu')->getData()) {
             $user = $form->getData();
             dd($user);
+            
             // todo registration process
         }
 
